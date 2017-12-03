@@ -1,12 +1,81 @@
-<<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>JSの練習</title>
 </head>
-<body>
-    <h1>jsの練習</h1>
+<body id="body">
+    <h1 id="title">jsの練習</h1>
+    <h2 id="subtitle">初めてのJS</h2>
+    <p id="paragraph">なんてことや</p>
+    <p id="paragraph2">なんてことや</p>
+    <button id="btn">クリック</button>
+    <button id="btn2">クリック</button>
+
+    <script>
+    //alert('alertのテスト');
+    /*
+    console.log('コンソールのテスト');
+    */
+
+    //このファイルのidの'title'のCSSの文字色を#FF0000（赤）にする
+    document.querySelector('#title').style.color = '#FF0000';
+    document.querySelector('#title').style.backgroundColor = '#EE0000';
+
+
+    //変数の指定
+    var colorValue; //変数「colorValue」を設定
+    var colorValue = '#FF0000';
+    document.querySelector('#subtitle').style.color = colorValue;
+
+    var colorValueB = '#0000FF'; //変数の設定と同時に中身の指定も可能！
+    document.querySelector('#paragraph').style.color = colorValueB;
+
+    var ttl = document.querySelector('#paragraph2');
+    ttl.style.color = colorValue;
+    console.log(ttl);
+
+    //changeStyle(); //関数の実行
+
+    //イベントがいつ発行されるか聞き耳を立てる
+    //#btnがクリックされたら (イベントのトリガーにclickという種類がある)
+    document.querySelector('#btn').addEventListener('click',changeStyle);
+    //関数の設定（実行される内容）
+    function changeStyle(){
+        btn.style.color = colorValue;
+    }
+
+    document.querySelector('#btn2').addEventListener('click', changeStyle2)
+
+    function changeStyle2(){
+        document.querySelector('#body').style.backgroundColor = colorValueB;
+    }
+
+
+    // //数値
+    // var numA = 10;
+    // var numB = 20;
+    //
+    // //数値の計算  //- * / %(余り)
+    // var resultC = numA + numB;
+    // console.log(resultC);
+    //
+    // //文字列
+    // var strD = '10';
+    // var resultE = numA + strD;
+    // console.log(resultE); //20ではなく、1010と表示される
+    //
+    // //文字列の結合
+    // var myName = 'aiko';
+    // var familyName = 'yonekura';
+    // var fullName = myName + familyName;
+    // console.log(fullName);
+
+
+
+
+    </script>
 </body>
 </html>
