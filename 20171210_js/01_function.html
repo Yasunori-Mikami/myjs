@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>01_function</title>
+<style>
+#navigation{
+	overflow: hidden;
+}
+#container{
+	width: 800px;
+	height: 500px;
+	position: relative;
+	background-color: #EDEDED;
+    margin-bottom: 10px;
+}
+#ball{
+	width: 80px;
+	height: 80px;
+	background-color: #F60;
+	border-radius: 40px;
+	position: absolute;
+	left: 0;
+	top:0;
+	text-align: center;
+	line-height: 5;
+}
+#btn1,#btn2,#reset,#move{
+    padding: 4px 20px;
+	background-color: #CCC;
+	border-radius: 10px;
+	text-align: center;
+	margin-bottom: 10px;
+	line-height: 2;
+	cursor: pointer;
+	float:left;
+	margin-right: 10px;
+}
+#numBox{
+	width: 170px;
+	height: 30px;
+	margin: 0 10px 0 50px;
+	float: left;
+}
+</style>
+</head>
+<body>
+	<div id="container">
+		<div id="ball">ball</div>
+	</div>
+    <div id="navigation">
+        <div id="btn1">色が変わる</div>
+        <div id="btn2">サイズが変わる</div>
+        <div id="reset">リセット</div>う
+        <input type="text" name="numBox" id="numBox">
+        <div id="move">移動</div>
+    </div>
+	<script>
+
+	// ------------------●ボタン1を押したら、ボールの色が変わる！----------------|
+	//1. #ballを変数名ballOjtに保存
+	var ballOjt = document.querySelector('#ball');
+	console.log(ballOjt);
+
+	//2. #btn1をクリックしたら関数changeColorを呼び出す
+	document.querySelector('#btn1').addEventListener('click',changeColor);
+
+	//3. 関数changeColorで#ballの背景を青にする
+	function changeColor(){
+		console.log('#btn1が押されたよ')
+		ballOjt.style.backgroundColor = '#0000FF';
+		ballOjt.style.color = '#FFFFFF';
+	}
+
+	//-----------●ボタン2を押したら、ボールの大きさが変わる------------------|
+	//#btn2を押したら、関数chanegSizeを呼び出す
+	document.querySelector('#btn2').addEventListener('click',changeSize);
+
+	//関数changeSizeで#ballの幅と高さを160pxに変える
+	function changeSize(){
+		console.log('#btn2が押されたよ')
+		ballOjt.style.width = '160px';
+		ballOjt.style.height = '160px';
+		ballOjt.style.borderRadius = '80px';
+	}
+
+	//-----------●resetボタンを押したら、全ての処理をリセットする------------------|
+	//#resetを押したら、関数resetStyleを呼び出す
+	document.querySelector('#reset').addEventListener('click',resetStyle);
+
+	//関数resetStyleでballの幅、高さ、色を元に戻す
+	function resetStyle() {
+		console.log('#resetボタンが押されたよ');
+
+		//背景と文字の色を初期設定に戻す
+		ballOjt.style.backgroundColor = '#F60';
+		ballOjt.style.color = "#000000"
+
+		//背景と高さ、幅、半径を初期設定に戻す
+		ballOjt.style.width = '80px';
+		ballOjt.style.height = '80px';
+		ballOjt.style.borderRadius = '40px';
+	}
+
+	//-------●移動ボタンを押したら、フォームに入力された数値分だけボールが移動する-------|
+	// #moveをクリックしたら、関数getPosを呼び出す
+	document.querySelector('#move').addEventListener('click',getPos);
+
+	// 関数getPosで#numBoxの値を取得する
+	function getPos (){
+		console.log('#getPosが押されたよ');
+
+		//フォーム(#numbox)に入力された数値を取得して保存する→変数を使う
+		//変数inputNumにフォームの値を保存
+		var inputNum = document.querySelector('#numBox').value;　//ローカル変数
+		console.log(inputNum);//''を付けると文字列になるが、つけないと変数の数値を出す
+
+		moveBall(inputNum); //moveBallの呼び出し、そして次の関数にinputNumの値を引き渡す→引数を使う
+	}
+
+	function moveBall(posNum){　//inputNumから受け渡された数値をposNumへ：引数
+		console.log('moveBallが呼ばれたよ！')
+
+		ballOjt.style.top = posNum + 'px';
+		ballOjt.style.left = posNum + 'px';
+
+	}
+
+	/*
+	// 関数getPosで#numBoxの値を取得する
+	// このやり方でもいいが、1つの関数には1つの処理を入れるべき！（他の人が分かるように）
+	// 数値を取得するのと、計算をするのと2つの処理を入れてしまっている
+	function getPos (){
+		console.log('#getPosが押されたよ');
+
+		//フォーム(#numbox)に入力された数値を取得して保存する→変数を使う
+		//変数inputNumにフォームの値を保存
+		var inputNum = document.querySelector('#numBox').value;
+		console.log(inputNum);
+
+		ballOjt.style.top = inputNum + 'px';
+		ballOjt.style.left = inputNum + 'px';
+	}
+	*/
+
+	</script>
+</body>
+</html>

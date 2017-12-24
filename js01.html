@@ -47,11 +47,23 @@
         btn.style.color = colorValue;
     }
 
+    //Bodyの背景を変える
     document.querySelector('#btn2').addEventListener('click', changeStyle2)
 
     function changeStyle2(){
         document.querySelector('#body').style.backgroundColor = colorValueB;
     }
+
+    //引数を使った関数
+    changeStyle3('#006699','#EEEECC');
+
+    function changeStyle3(aColor,aBgColor){
+        document.querySelector('#title').style.Color = 'aColor';
+        document.querySelector('#title').style.backgroundColor = 'aBgColor';
+    }
+
+    //無名関数
+
 
 
     // //数値

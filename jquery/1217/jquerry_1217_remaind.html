@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>jQueryの練習</title>
+    <link rel="stylesheet" href="jq01_1217_remaind.css">
+</head>
+<body>
+
+<h1 id="title">ドリンクメニュー</h1>
+<ul id="menu">
+    <li>ブレンドコーヒー</li>
+    <li>カフェラテ</li>
+    <li>カプチーノ</li>
+    <li>マキアート</li>
+</ul>
+<div id="photo">
+    <img src="img/cafeLatte01.jpg" alt="ラテアート">
+    <p id ="caption">ラテアート</p>
+</div>
+<button id="btn">クリック</button>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+// DOM(タグのこと　Document )の読み込み
+$(function(){
+
+    //-----------#btnをクリックしたら------------|
+    //document.querrySelector('#btn').addEventListener('click',////);
+    $('#btn').on('click',function(){//無名関数
+        console.log('#btnがクリックされたよ！');
+
+        //$('#title').addClass('fade-in'); //タイトルにクラス[.red]を付与する
+
+        //-----------リストの指定-------------------------|
+        //リストの子要素の指定
+        //$('#menu li:eq(1)').addClass('red');//書き方1
+        //$('#menu').find('li:eq(2)').addClass('red'); //書き方2
+
+        //複数選択
+        //$('#menu li:eq(1),#menu li:eq(2)').addClass('red');
+
+        //指定外選択 (1番目以外を全部指定)
+        $('#menu li:not(#menu li:eq(1))').addClass('blue');
+
+        //ループ処理(リストの数分を回す)--------------------------|
+        $('#menu li').each(function(index){
+
+            console.log(index);
+
+            //.text()でテキストの取得
+            var txt =$(this).text();  //thisはこの場合liタグを指す
+            console.log(txt);
+
+            //.text('あああ')でテキストの上書き（括弧内に文字を入れる！）
+            //$('#menu li:eq(1)').text('テキストが入れ替わる！');//　.textで文字が上書きされる
+        });
+
+        //---------------追加、入れ替わりなど-----------------|
+        //リストの先頭に追加
+        //$('#menu').prepend('<li>カフェモカ</li>');
+
+        //リストの最後に追加
+        //$('#menu').append('<li>フラペチーノ</li>');
+
+
+        //liの最後にブレンドコーヒーを入れ替える
+        //→まずブレンドコーヒーを取得し、#menuのliの最後に追加する
+        //$('#menu li:eq(0)').appendTo('#menu');
+
+        //liの先頭にマキアートを入れ替える
+        $('#menu li:eq(3)').prependTo('#menu');
+
+        //-----写真の入れ替わり-------|
+        //写真の入れ替わり：ソースを入れ替える　→　Attribute(attr)
+        //$('#photo img').attr('src','img/cafeLatte02.jpg');
+
+        //写真の入れ替わり：ソースとaltもを入れ替える　→　命令を複数繋げることができる→メソッドチェーン！
+        $('#photo img').attr('src','img/cafeLatte02.jpg').attr('alt', 'PRONTのカフェラテ');
+
+        //--------------------削除------------------------|
+        //クリックすると、タグ自体を完全に削除できる
+        $('#caption').remove();
+
+        //hideだと、display:noneになる（タグは残るが、見た目は消える）非表示
+        //$('#caption').hide();  //逆はshow
+    });
+});
+</script>
+</body>
+</html>

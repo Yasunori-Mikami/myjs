@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+</head>
+<body>
+
+<h1 id="title">ドリンクメニュー</h1>
+<ul id="menu">
+    <li>ブレンドコーヒー</li>
+    <li>カフェラテ</li>
+    <li>カプチーノ</li>
+    <li>マキアート</li>
+</ul>
+<button id="btn">クリック</button>
+
+<!--jQuery の導入。先にコードを挿入する必要がある -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script>
+<!--DOM Content Loaded  : HTMLより後に読み込む様に設定する-->
+jQuery(function(){
+    ///---------サンプル(1）----------------------}
+    //pure js :jQueryを使わない
+    //document.querySelector('#title').style.color = '#FF0000'; ↓↓
+
+    //Jqueryでの書き方
+    //jQuery('#title').css('color', '#FF0000');
+    var menu = $('menu');   //jQuery は「$」で代用が可能！！！！
+
+    ///---------サンプル(2）----------------------}
+    //pure js
+    /*jQueryでは無名関数で書く！基本的に関数を書かない
+    document.querrySelector('#btn')addEventListener('click', function(){
+        document.querySelector('#title').style.color = '#FF0000';
+    })*/
+
+    //jQueryでの書き方
+    $('#btn').on('click', function(){
+        $('#title').css('color','#FF0000');
+
+        //リストの2つめの色を変える　
+        $('#menu li:eq(1)').css('color','#00FF00');//eqはイコールの意味
+        //$('#menu li:eq(1),#menu li:eq(1)').css('color','#00FF00');//複数箇所の指定も可能
+
+        //★classを付与することもできる → 開発ツールで確認
+        //$('#title').addClass('fade-in');  //タイトルにクラス'fade-in'をつける
+        $('#title').toggleClass('fade-in'); //押したり、再度押したりしたら切り替わる！→本来であればif文などを使って複雑な処理が必要になる
+
+
+    });
+
+
+});
+</script>
+
+</body>
+</html>

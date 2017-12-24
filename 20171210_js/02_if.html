@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>02_if</title>
+    <style>
+    #container{
+        width: 800px;
+        height: 400px;
+        position: relative;
+        overflow: hidden;
+        background: url(img/bg.png) center bottom no-repeat;
+        margin-bottom: 10px;
+    }
+    .btn{
+        width: 100px;
+        height: 40px;
+        font-size: 16px;
+        background-color: #DDD;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 2.5;
+        float: left;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    #stego{
+        position: absolute;
+        width: 200px;
+        height: auto;
+        left: 0;
+        top:200px;
+    }
+    #stego img{
+        width: 200px;
+        height: auto;
+    }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div id="stego"><img src="img/stego.png" alt="ステゴザウルス"></div>
+</div>
+<div id="leftBtn" class="btn">左へ移動</div>
+<div id="rightBtn" class="btn">右へ移動</div>
+<!-- <div id="animeLeft" class="btn">左へアニメ</div>
+<div id="animeRight" class="btn">右へアニメ</div>
+<div id="animeStop" class="btn">ストップ</div> -->
+
+<script>
+    /*
+    var now = new Date();//日時の取得
+    console.log(now);
+
+    var hour = now.getHours(); //日時の中から時間を取得
+    console.log(hour);
+
+    //if文　()の中に条件を入れる。｛　｝の中に条件を満たした時の処理を入れる
+    if(hour <= 12){
+        //もしhourが12よりも小さかったら(<でより小さかったら、<= で12も含む
+        console.log('午前中です');
+    } else if(hour === 12 ){   //else if  で複数条件を設定できる
+        //ぴったり12だったら
+        console.log('正午です')
+    } else {
+        //そうでない場合（12より大きかったら）
+        console.log('午後です');
+    }
+    */
+
+
+
+    //グローバル変数　stegoPos
+    var stegoPos = 0;  //呼ばれるのは最初だけ！！もしローカル変数に入れると、毎回呼ばれて毎回0から足していくことになる！加算させる場合はグローバル変数に設定させる
+
+    //１変数stegoを創って、#stegoを保存
+    var stego = document.querySelector('#stego');
+    console.log(stego);
+
+    //-----------------右移動 ------------------------|
+    // 2 #rightBtnをクリックしたら関数moveRightを呼ぶ
+    document.querySelector('#rightBtn').addEventListener('click', moveRight);
+
+    //3 関数moveRightを創って右に移動
+    function moveRight (){
+        console.log('#rightBtnが押されたよ');
+
+        //現在のstegoPosに50づつ足して上書きをしていく
+        stegoPos = stegoPos + 50;
+        console.log(stegoPos);
+
+        //stegoのstyleのposition leftにstegoPosを代入
+        stego.style.left = stegoPos + 'px';
+
+        //もしstegoPosが800以上移動したら、stegoPosを-200に置く
+        if(stegoPos > 800){
+            stegoPos = -200;
+        }
+    }
+
+    //----------------  左移動 -----------|
+    document.querySelector('#leftBtn').addEventListener('click', moveleft);
+
+    function moveleft (){
+        console.log("左へ移動")
+
+        stegoPos = stegoPos - 50;
+        console.log(stegoPos);
+
+        stego.style.left = stegoPos + 'px';
+
+        //もしstegoPosが-200以上移動したら、stegoPosを750に置く
+        if(stegoPos < -200){
+            stegoPos = 750;
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

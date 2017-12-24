@@ -1,0 +1,27 @@
+.red{
+    color: #FF0000;
+}
+
+.blue {
+    color:#0000FF;
+}
+
+#title{
+    opacity:0 ;
+}
+
+.fade-in {
+    animation-name: fade-in;
+    animation-duration: 1s; /*1秒間でアニメ*/
+    animation-iteration-count: 1;/*1回のみ繰り返す*/
+    animation-fill-mode: forwards;/*アニメの方向*/
+}
+
+@keyframes fade-in {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

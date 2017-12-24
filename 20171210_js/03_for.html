@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>03_for</title>
+    <style>
+    #container{
+        width: 800px;
+        height: 400px;
+        position: relative;
+        overflow: hidden;
+        background: url(img/bg.png) center bottom no-repeat;
+        margin-bottom: 10px;
+    }
+    .btn{
+        width: 100px;
+        height: 40px;
+        font-size: 16px;
+        background-color: #DDD;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 2.5;
+        float: left;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+<div id="container">
+</div>
+<div id="dinoBtn" class="btn">DINO</div>
+<div id="allBtn" class="btn">ALL</div>
+<script>
+    //----------------- 一気にdinoを出す！(DINOボタン)----------------------------|
+    //まずはcontainerを取得
+    var container = document.querySelector('#container');
+    console.log(container);
+
+    //#dinoBtnをクリックしたら、関数addDinoを呼び出す
+    document.querySelector('#dinoBtn').addEventListener('click',addDino);
+
+    function addDino(){
+        console.log('#addBtnが押されたよ');
+
+        //forループ
+        for(var i=0; i<4; i++){
+            //1) createElementで新規でタグを生成する
+            var imgTag = document.createElement('img');
+
+            //2) src属性を追加して、img/dino.pngを指定
+            imgTag.setAttribute('src','img/dino.png');
+            //alt属性も追加
+            imgTag.setAttribute('alt', 'dino');
+
+
+            //3) div#containerにimgTagを追加する必要がある　
+            container.appendChild(imgTag);
+
+            console.log(imgTag);
+        }
+    }
+
+    //------------ 一気に全ての画像を出す！(ALLボタン)-------------------------|
+    //配列
+    var chara = ['dino','stego','tirano','trikera'];
+
+    document.querySelector('#allBtn').addEventListener('click',addAll);
+
+    function addAll(){
+        console.log('#allBtnが押されたよ');
+        for (var i = 0; i < chara.length; i++) {
+            var imgTag = document.createElement('img');
+            imgTag.setAttribute('src', 'img/' + chara[i] + '.png');
+            imgTag.setAttribute('alt', chara[i]);
+            console.log(imgTag);
+            container.appendChild(imgTag);
+        }
+    }
+
+    //配列の作成
+    //書き方1
+    /*var fruits = [];
+    fruits[0] = 'Apple';
+    fruits[1] = 'Orange';
+    fruits[2] = 'Grape';
+    fruits[3] = 'Strawberry';
+    */
+    /*
+    //書き方2
+    var fruits =  ['Apple','Orange','Grape','Strawberry'];
+    for (var i = 0; i < fruits.length; i++){ //lengthを指定することで、配列の長さ（数）に応じてループ処理をしてくれる
+        console.log(fruits[i]);
+    }
+    */
+
+/*
+<script>  //for文なしのバージョン！！
+    //まずはcontainerを取得
+    var container = document.querySelector('#container');
+    console.log(container);
+
+    //#dinoBtnをクリックしたら、関数addDinoを呼び出す
+    document.querySelector('#dinoBtn').addEventListener('click',addDino);
+
+    function addDino(){
+        console.log('#addBtnが押されたよ');
+
+        //1) createElementで新規でタグを生成する
+        var imgTag = document.createElement('img');
+
+        //2) src属性を追加して、img/dino.pngを指定
+        imgTag.setAttribute('src','img/dino.png');
+        //alt属性も追加
+        imgTag.setAttribute('alt', 'dino');
+
+        console.log(imgTag);
+
+
+        //3) div#containerにimgTagを追加する必要がある　
+        container.appendChild(imgTag);
+
+    }
+
+    //for ループ ()に条件を記述
+    for(var i=0; i<10; i++){
+        console.log(i);
+    }
+    */
+</script>
+</body>
+</html>
